@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Di-rút</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="errorMessage" style="display: none; color: red; font-size: 20px; position: absolute; top: 20px; left: 20px; z-index: 30;">
+        Không thể tải tài nguyên. Vui lòng kiểm tra lại các file hình ảnh và âm thanh.
+    </div>
+    <!-- Thêm các phần tử floating-virus -->
+    <div class="floating-virus">
+        <div class="spike-x"></div>
+        <div class="spike-y"></div>
+    </div>
+    <div class="floating-virus">
+        <div class="spike-x"></div>
+        <div class="spike-y"></div>
+    </div>
+    <div class="floating-virus">
+        <div class="spike-x"></div>
+        <div class="spike-y"></div>
+    </div>
+    <div class="floating-virus">
+        <div class="spike-x"></div>
+        <div class="spike-y"></div>
+    </div>
+    <div class="floating-virus">
+        <div class="spike-x"></div>
+        <div class="spike-y"></div>
+    </div>
+    <canvas id="gameCanvas" style="z-index: 10;"></canvas>
+    <div id="startScreen" class="screen">
+        <h1 class="wave-text">Flappy Di-rút</h1>
+		<br>
+        <small>Nhấn Space để bắt đầu chơi</small>
+    </div>
+    <div id="gameOverScreen" class="screen">
+        <h1>Em phải tin anh chứ?</h1>
+        <p>Anh chỉ yêu mỗi <span id="finalScore" class="score-color"></span> em thôi!</p>
+    </div>
+    <button id="restartButton" style="display: none; z-index: 20;">Chơi lại</button>
+    <audio id="backgroundMusic" preload="auto">
+        <source src="viruss.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: darkslategrey;
+    overflow: hidden;
+    flex-direction: column;
+    touch-action: manipulation;
+}
+
+#gameCanvas {
+    border: 2px solid white;
+    z-index: 10; /* Đảm bảo canvas hiển thị trên virus background */
+}
+
+.screen {
+    position: absolute;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    z-index: 20; /* Đảm bảo màn hình bắt đầu/game over hiển thị trên canvas */
+}
+
+#startScreen {
+    display: block;
+}
+
+#startScreen h1, #gameOverScreen h1 {
+    font-size: 5vh;
+    margin-bottom: 2vh;
+}
+
+#startScreen small {
+    font-size: 2.5vh;
+}
+
+#gameOverScreen {
+    display: none;
+}
+
+#gameOverScreen p {
+    font-size: 2.5vh;
+    margin-bottom: 2vh;
+}
+
+.score-color {
+    color: #2ecc70d4;
+    font-style: italic;
+}
+
+#restartButton {
+    margin-top: 3vh;
+    padding: 1.5vh 3vh;
+    font-size: 2.5vh;
+    background-color: #2ecc70d4;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 20; /* Đảm bảo button hiển thị trên canvas */
+}
+
+#restartButton:hover {
+    background-color: #27ae60;
+}
+
+/* Floating virus background elements */
+.floating-virus {
+    position: absolute;
+    opacity: 0.3;
+    z-index: 1; /* Đảm bảo virus ở dưới canvas */
+    pointer-events: none;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.floating-virus::before,
+.floating-virus::after {
+    content: '';
+    position: absolute;
+    background-color: #2ecc71;
+}
+
+.floating-virus::before {
+    width: 20%;
+    height: 140%;
+    border-radius: 40%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+}
+
+.floating-virus::after {
+    width: 140%;
+    height: 20%;
+    border-radius: 40%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+}
+
+.floating-virus .spike-x {
+    position: absolute;
+    width: 140%;
+    height: 20%;
+    background-color: #2ecc71;
+    border-radius: 40%;
+    transform: rotate(90deg);
+}
+
+.floating-virus .spike-y {
+    position: absolute;
+    width: 20%;
+    height: 140%;
+    background-color: #2ecc71;
+    border-radius: 40%;
+    transform: rotate(90deg);
+}
+
+.floating-virus:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 10%;
+    animation: float 20s linear infinite;
+}
+
+.floating-virus:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 40%;
+    left: 75%;
+    animation: float 15s linear infinite reverse;
+}
+
+.floating-virus:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 70%;
+    left: 30%;
+    animation: float 25s linear infinite;
+}
+
+.floating-virus:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    top: 25%;
+    left: 60%;
+    animation: float 18s linear infinite reverse;
+}
+
+.floating-virus:nth-child(5) {
+    width: 70px;
+    height: 70px;
+    top: 80%;
+    left: 80%;
+    animation: float 22s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(50px, 25px) rotate(90deg);
+    }
+    50% {
+        transform: translate(0, 50px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-50px, 25px) rotate(270deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+/* Hiệu ứng sóng cho chữ */
+.wave-text {
+    letter-spacing: 1vw;
+    color: #2ecc70d4;
+    display: inline-block;
+}
+
+.wave-text span {
+    display: inline-block;
+    animation: wave-text 1.5s ease-in-out infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes wave-text {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+    75% {
+        transform: translateY(10px) rotate(-3deg);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #startScreen h1, #gameOverScreen h1 {
+        font-size: 4vh;
+    }
+
+    #startScreen small, #gameOverScreen p {
+        font-size: 2vh;
+    }
+
+    #restartButton {
+        padding: 1vh 2vh;
+        font-size: 2vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #startScreen h1, #gameOverScreen h1 {
+        font-size: 3.5vh;
+    }
+
+    #startScreen small, #gameOverScreen p {
+        font-size: 1.8vh;
+    }
+
+    #restartButton {
+        padding: 0.8vh 1.5vh;
+        font-size: 1.8vh;
+    }
+}
+
+@media (max-height: 500px), (orientation: landscape) and (max-height: 500px) {
+    #startScreen h1, #gameOverScreen h1 {
+        font-size: 4vh;
+        margin-bottom: 1vh;
+    }
+
+    #startScreen small, #gameOverScreen p {
+        font-size: 2vh;
+    }
+
+    #restartButton {
+        padding: 1vh 2vh;
+        font-size: 2vh;
+    }
+}
