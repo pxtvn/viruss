@@ -111,10 +111,10 @@ function drawFish() {
 function drawPoles() {
     try {
         poles.forEach(pole => {
-            // Vẽ hitbox (lớp trong suốt 40%)
+            // Vẽ hitbox (lớp trong suốt 20%, màu xanh lá)
             ctx.save();
-            ctx.globalAlpha = 0.4;
-            ctx.fillStyle = 'red';
+            ctx.globalAlpha = 0.2; // Đổi opacity thành 20%
+            ctx.fillStyle = 'green'; // Đổi màu thành xanh lá
             const hitboxOffsetX = (pole.width - pole.hitboxWidth) / 2;
             ctx.fillRect(pole.x + hitboxOffsetX, 0, pole.hitboxWidth, pole.topHeight);
             ctx.fillRect(pole.x + hitboxOffsetX, canvas.height - pole.bottomHeight, pole.hitboxWidth, pole.bottomHeight);
